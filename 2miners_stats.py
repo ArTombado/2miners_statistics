@@ -21,15 +21,15 @@ hashrateEthereum = int(stats_pool["nodes"][0]["networkhashps"])
 
 miners = stats_miners["miners"]
 
-nano_miners              = {k: v for k, v in miners.items() if( (k.startswith("nano_") or k.startswith("xrb_")) and not v["offline"] )}
+nano_miners              = {k: v for k, v in miners.items() if( (k.startswith("nano_") or k.startswith("xrb_")) and not v["offline"] and v["hr"] != 0 )}
 hashrate_nano_list       = [info["hr"] for info in nano_miners.values()]
 hashrate_nano_total      = sum(hashrate_nano_list)
 
-ethereum_miners         = {k: v for k, v in miners.items() if( k.startswith("0x") and not v["offline"] )}
+ethereum_miners         = {k: v for k, v in miners.items() if( k.startswith("0x") and not v["offline"] and v["hr"] != 0 )}
 hashrate_ethereum_list  = [info["hr"] for info in ethereum_miners.values()]
 hashrate_ethereum_total = sum(hashrate_ethereum_list)
 
-bitcoin_miners          = {k: v for k, v in miners.items() if( (k.startswith("1") or k.startswith("3") or k.startswith("bc1")) and not v["offline"] )}
+bitcoin_miners          = {k: v for k, v in miners.items() if( (k.startswith("1") or k.startswith("3") or k.startswith("bc1")) and not v["offline"] and v["hr"] != 0 )}
 hashrate_bitcoin_list   = [info["hr"] for info in bitcoin_miners.values()]
 hashrate_bitcoin_total  = sum(hashrate_bitcoin_list)
 
