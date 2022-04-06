@@ -183,7 +183,10 @@ function make_template()
 
   if( stats_columns.getValues().toString() != columns.toString() )
   {
-    sheet.deleteRows(2, sheet.getMaxRows() - 1)
+    if( sheet.getMaxRows() > 1 )
+    {
+      sheet.deleteRows(2, sheet.getMaxRows() - 1)
+    }
     if( sheet.getMaxColumns() > 12 )
     {
       sheet.deleteColumns(13, sheet.getMaxColumns() - 12)
