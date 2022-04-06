@@ -179,6 +179,8 @@ function make_template()
 {
   var stats_columns = sheet.getRange(1, 1, 1, 12)
 
+  sheet.setFrozenRows(0)
+
   if( stats_columns.getValues().toString() != columns.toString() )
   {
     sheet.deleteRows(2, sheet.getMaxRows() - 1)
