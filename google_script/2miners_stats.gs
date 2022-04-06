@@ -59,6 +59,8 @@ function deleteTriggers()
 
 function main()
 {
+  var HOUR = 9
+  
   if( deleteTriggers() )
   {
     twominers_statistics()
@@ -66,7 +68,7 @@ function main()
   
   var date = new Date()
   date.setDate(date.getDate() + 1)
-  date.setHours(8, 0, 0, 0)
+  date.setHours(HOUR - 1, 0, 0, 0)
 
   ScriptApp.newTrigger("main")
   .timeBased()
