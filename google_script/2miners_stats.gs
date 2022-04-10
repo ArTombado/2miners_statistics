@@ -59,24 +59,28 @@ function deleteTriggers()
 
 function main()
 {
-  var HOUR = 9
+  var HOUR = 12
+  
+  var date = new Date()
+
+  var date_string = Utilities.formatDate(date, "UTC", "yyyy-MM-dd HH:mm")
+
+  date.setUTCDate(date.getDate() + 1)
+  date.setUTCHours(HOUR, 0, 0, 0)
   
   if( deleteTriggers() )
   {
-    twominers_statistics()
+    twominers_statistics(date_string)
   }
-  
-  var date = new Date()
-  date.setDate(date.getDate() + 1)
-  date.setHours(HOUR - 1, 0, 0, 0)
 
   ScriptApp.newTrigger("main")
   .timeBased()
   .at(date)
+  .inTimezone("UTC")
   .create()
 }
 
-function twominers_statistics()
+function twominers_statistics(date_string)
 {
 
   var init = make_template()
@@ -129,9 +133,6 @@ function twominers_statistics()
   var hashrateTotal = hashrate_bitcoin_total + hashrate_nano_total + hashrate_ethereum_total
 
   var fill_template_merged = [[]]
-
-  var date = new Date()
-  var date_string = Utilities.formatDate(date, "GMT", "yyyy-MM-dd HH:mm")
   
   fill_template_merged[0].push(date_string)
 
